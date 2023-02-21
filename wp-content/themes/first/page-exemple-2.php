@@ -7,7 +7,7 @@
             <div class="col-3">
                 <h1><?php the_title() ?></h1>
             </div>
-             <div class="col">
+            <div class="col">
                 <?php the_content() ?>
             </div>
 

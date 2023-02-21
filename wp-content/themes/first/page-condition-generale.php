@@ -4,9 +4,10 @@
     <div class="row">
         <?php while (have_posts()) : ?>
             <?php the_post() ?>
-
-            <h1><?php the_title() ?></h1>
-
+            <div class>
+                <h1><?php the_title() ?></h1>
+                <hr>
+            </div>
             <div>
                 <?php the_content() ?>
             </div>

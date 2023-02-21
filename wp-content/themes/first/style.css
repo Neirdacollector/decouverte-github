@@ -4,23 +4,23 @@
    Descritpion: Découverte des thèmes Wordpress
 */
 
-.bg-primary{
+/* .bg-primary{
    background: rgb(116, 0, 179) !important;
    
-}
+} */
 
-.nav-link{
+/*  .nav-link{
    color: rgb(251, 255, 0) !important;
    
-}
+} */
 
-.nav-link:hover{
+/* .nav-link:hover{
    color: rgb(255, 174, 0) !important;
    background-color: blueviolet;
    border-radius: 10px;
    
-}
-
+} 
+ */
 .home .card{
    animation: apparition 1s forwards;
    opacity : 0;
@@ -38,3 +38,29 @@
    to {opacity : 1;
    transform: translateX(0px);}
 }
+
+.category-php{
+   background: black !important;
+   color: white !important;
+}
+
+.category-php .bg-primary{
+   background: rgb(255, 255, 255) !important;
+      
+}
+
+ .category-php .nav-link{
+   color: rgb(1, 1, 1) !important;
+   
+} 
+
+.category-php .nav-link:hover{
+   
+   color: rgb(148, 9, 9) !important;
+  
+   
+} 
+
+
+
+
