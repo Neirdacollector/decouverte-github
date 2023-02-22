@@ -12,20 +12,26 @@
 </head>
 
 <body <?php body_class() ?>> <!-- permet de gerer automatiquement une class en fonction de la page actuellement affichée-->
-    <header class="bg-primary">
+    <header class="bg-danger">
         <nav class="navbar navbar-expand container navbar-dark">
             <ul class="navbar-nav">
+                <li class="nav-item mt-2">
+                    <a class="link" href="<?= get_option("home") ?>">Accueil</a>
+                </li>
                 <li class="nav-item dropdown"><!-- Permet d'afficher la fleche a coté du mot-->
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">
-                            <a href="<?= get_page_url("exemple 1") ?>">Exemple 1</a>
+                            <a href="<?= get_page_url("newsletter") ?>">Exemple 1</a>
                         </li>
                         <li class="dropdown-item">
                             <a href="<?= get_page_url("exemple 2") ?>">Exemple 2</a>
                         </li>
                         <li class="dropdown-item">
                             <a href="<?= get_page_url("condition générale") ?>">Conditions Générales</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="<?= get_page_url("contact") ?>">Contact</a>
                         </li>
                     </ul>
                 </li>
@@ -45,6 +51,9 @@
                             <a href="<?= get_category_url("React") ?>">React</a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item mt-2">
+                    <a class="link" href="<?= get_page_url("contact") ?>">Contact</a>
                 </li>
             </ul>
         </nav>

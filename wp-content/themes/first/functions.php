@@ -43,22 +43,91 @@ function get_category_url(string $slug): string
  * @param string $slug_categorie
  * @return void
  */
-function get_article_filtered(string $slug_categorie):WP_Query{
+function get_article_filtered(string $slug_categorie): WP_Query
+{
     $args = array(
         "category_name" => $slug_categorie,
         'orderby' => 'title',
         'order' => $_GET["order"] ?? "ASC"
     );
     return new WP_Query($args);
-
 }
 
 function get_article_filtered_by_date(string $slug_categorie): WP_Query
 {
     $args = array(
-        "category_name" => $slug_categorie,
-        'orderby' => 'date',
-        'date_order' => $_GET["date_order"] ?? "DASC"
+        "category_name" => $slug_categorie
     );
+    $list = ["ASC", "DESC"];
+    if (!empty($_GET["order"]) && in_array($_GET["order"], $list)) {
+        $args['orderby'] = "title";
+        $args['order'] = $_GET["order"];
+    }
+    if (!empty($_GET["date"]) && DateTime::createFromFormat("Y-m-d", $_GET["date"]) !== false) {
+        $date = DateTime::createFromFormat("Y-m-d", $_GET["date"]);
+        $args['date_query'] = [
+            [
+                'year'  => $date->format("Y"),
+                'month' => $date->format("m"),
+                'day'   => $date->format("d")
+            ]
+        ];
+    }
     return new WP_Query($args);
 }
+
+function categorie_badge(int $post_id): string
+{
+    $resultat = "";
+    foreach (get_the_category($post_id) as $category) {
+        $resultat .= "<span class='badge bg-warning me-2'>
+            <a href='" . get_tag_link($category->term_id) . "' class='text-decoration-none text-white'>{$category->name}</a>
+        </span>";
+    }
+    return $resultat;
+}
+
+function add_formulaire_contact(): string
+{
+    return "
+    <form method='POST'>
+    <div class='mb-3'> 
+    <label for='email'> Saisir votre email</label>
+    <input type='email' name='email' class='form-control'>
+    </div>
+     <div class='mb-3'> 
+    <label for='message'> Saisir votre message</label>
+    <textarea name='message' class='form-control' id='message' rows='6'></textarea>
+    </div>
+    <input type='submit' class='btn btn-dark'>
+    </form>
+    ";
+}
+// form_contact = mot que l'on va écrire dans le "code court" dans le back office
+// add_formulaire_contact = nom de la fonction qui retourne le formulaire ( ou autre)
+add_shortcode("form_contact", "add_formulaire_contact");
+// ajouter un bloc "code court" => [form_contact]
+
+//traitement du formulaire de contact
+if (!empty($_POST["email"]) && !empty($_POST["message"])) {
+    global $wpdb;
+    $create = $wpdb->prepare("
+         CREATE TABLE IF NOT EXISTS wp_contact (
+            id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            email VARCHAR(255),
+            message TEXT
+            )
+     ");
+    $wpdb->get_row($create);
+    $query = $wpdb->prepare("INSERT INTO wp_contact
+        (email, message)
+        VALUES
+        (%s, %s)
+        ", [$_POST["email"], $_POST["message"]]);
+    $wpdb->get_row($query);
+}
+
+
+
+
+

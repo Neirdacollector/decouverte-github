@@ -9,10 +9,23 @@
    
 } */
 
-/*  .nav-link{
-   color: rgb(251, 255, 0) !important;
+a.nav-link{
+   color: rgb(255, 230, 0) !important;
    
-} */
+} 
+
+a.nav-link:hover{
+   color: rgb(221, 0, 255) !important;
+}
+
+.link{
+   color: rgb(255, 230, 0) !important;
+   
+} 
+
+.link:hover{
+   color: rgb(221, 0, 255) !important;
+}
 
 /* .nav-link:hover{
    color: rgb(255, 174, 0) !important;
