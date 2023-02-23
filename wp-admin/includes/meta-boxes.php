@@ -349,7 +349,10 @@ function post_submit_meta_box( $post, $args = array() ) {
 		<?php
 		if ( ! in_array( $post->post_status, array( 'publish', 'future', 'private' ), true ) || 0 === $post_id ) {
 			if ( $can_publish ) :
-				if ( ! empty( $post->post_date_gmt ) && time() < strtotime( $post->post_date_gmt . ' +0000' ) ) :
+				
+	
+
+				if ( ! empty( $post->post_date_gmt ) && time() < @strtotime( $post->post_date_gmt ) ) :
 					?>
 					<input name="original_publish" type="hidden" id="original_publish" value="<?php echo esc_attr_x( 'Schedule', 'post action/button label' ); ?>" />
 					<?php submit_button( _x( 'Schedule', 'post action/button label' ), 'primary large', 'publish', false ); ?>

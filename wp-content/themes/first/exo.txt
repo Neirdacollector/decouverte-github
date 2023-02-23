@@ -1,0 +1,12 @@
+1 créer un nouveau fichier dans le dossier theme "single.php" (templete hierarchie)
+
+single ( célibataire)
+
+récupérer le header et le footer, on lance une boucle pour recuperer le contenu de l'article : 
+
+titre 
+image   a la une
+contenu_page_newsletterdate de cr&actionspasser d'un article a l'autre
+
+
+rechercher sur internet (documentation de wp) comment afficher la zone de commentaire sous l'article

@@ -127,7 +127,27 @@ if (!empty($_POST["email"]) && !empty($_POST["message"])) {
     $wpdb->get_row($query);
 }
 
+add_action('init', function () {
+    register_sidebar([
+        "name" => "search",
+        "id" => "search"
+    ]);
+});
+
+add_action('init', function () { // permet d'ajouter un onglet "produit" dans le back office
 
 
 
-
+    $args = [
+        "label" => "produits",
+        "public" => true,
+        "supports" => ["title", "editor","thumbnail", "custom-fields"],
+        "has_archive" => true
+    ];
+    
+    register_post_type("produits", $args);
+    //titre nom produit
+    //description contenu
+    //image image principale du produit
+    //prix
+});

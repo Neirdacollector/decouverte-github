@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= get_template_directory_uri() ?>/style.css?v=1"> <!-- cette fontion remplace le chemin vers le dossier des templates  (http://localhost/demo/wp-content/themes/first)-->
+    <link rel="stylesheet" href="<?= get_template_directory_uri() ?>/style.css?v=2"> <!-- cette fontion remplace le chemin vers le dossier des templates  (http://localhost/demo/wp-content/themes/first)-->
     <?php wp_head() ?>
 </head>
 
 <body <?php body_class() ?>> <!-- permet de gerer automatiquement une class en fonction de la page actuellement affichée-->
-    <header class="bg-danger">
-        <nav class="navbar navbar-expand container navbar-dark">
+    <header class="bg-primary d-flex space-between">
+        <nav class="navbar navbar-expand container navbar-dark ">
             <ul class="navbar-nav">
                 <li class="nav-item mt-2">
                     <a class="link" href="<?= get_option("home") ?>">Accueil</a>
@@ -53,8 +53,16 @@
                     </ul>
                 </li>
                 <li class="nav-item mt-2">
-                    <a class="link" href="<?= get_page_url("contact") ?>">Contact</a>
+                    <a class="nav-link" href="<?= get_page_url("contact") ?>">Contact</a>
                 </li>
+                <li class="nav-item mt-2">
+                    <a class="nav-link" href="<?= get_post_type_archive_link("produits") ?>">Catalogue</a>
+                </li>
+
             </ul>
+            <form action="<?= get_option("home") ?>" class="ms-auto d-flex">
+                <input type="text" placeholder="rechercher" name="s" class="form-control me-2"> <!-- Le name="s" est obligatoire pour un champ de recherche -->
+                <input type="submit" value="rechercher" class="btn btn-warning btn-sm">
+            </form>
         </nav>
     </header>
